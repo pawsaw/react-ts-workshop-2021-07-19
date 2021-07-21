@@ -1,6 +1,7 @@
 import React from 'react'
-import { Book } from '../../../domain/books'
-import { noop } from '../../../util/noop'
+import { Book } from '../../../../domain/books'
+import { noop } from '../../../../util/noop'
+
 
 export interface OnBookListItemClicked {
   (book: Book): void;

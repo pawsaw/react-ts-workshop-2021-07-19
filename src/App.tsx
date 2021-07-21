@@ -1,33 +1,25 @@
-import { useState } from 'react';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
-import { BookDetail } from './components/BookDetail';
-import { BookList, OnBookSelected } from './components/BookList';
-import { Book, useBooks } from './domain/books';
+import { BooksScreen } from './screens/BooksScreen';
+import { PlaygroundScreen } from './screens/PlaygroundScreen';
 
 function App() {
 
-  const books = useBooks();
-  const [book, setBook] = useState<Book | null>(null);
-
-  const onBookSelected: OnBookSelected = (book: Book) => {
-    setBook(book);
-  }
-
-  return <div className="App">
-    {books ? (
-      <>
-        <BookList books={books} onBookSelected={onBookSelected} />
-          {book ? (
-            <>
-              <BookDetail book={book} />
-            </>
-          ) : (
-            <div>No Book selected</div>
-          )}
-      </>
-    ) : <span>Loading books...</span>}
-
+  return (
+    <div>
+      <nav>
+          <Link to="/playground">Playground</Link>|
+          <Link to="/books">Books</Link>|
+          {/* <a href="/playground">Playground</a>|
+          <a href="/books">Books</a>| */}
+      </nav>
+      <Switch>
+          <Route path="/playground"><PlaygroundScreen /></Route>
+          <Route path="/books"><BooksScreen /></Route>
+          <Redirect to="/books" />
+      </Switch>
   </div>
+  );
 }
 
 

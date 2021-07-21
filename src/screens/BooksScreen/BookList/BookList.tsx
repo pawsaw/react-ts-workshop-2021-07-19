@@ -1,6 +1,8 @@
 import React from 'react'
-import { Book } from '../../domain/books'
-import { noop } from '../../util/noop';
+
+import { Book } from '../../../domain/books';
+import { noop } from '../../../util/noop';
+
 import { BookListItem, OnBookListItemClicked } from './BookListItem'
 
 export type OnBookSelected = OnBookListItemClicked;
