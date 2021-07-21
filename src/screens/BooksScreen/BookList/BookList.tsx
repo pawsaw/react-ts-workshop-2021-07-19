@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 import { Book } from '../../../domain/books';
 import { noop } from '../../../util/noop';
@@ -16,7 +17,10 @@ export const BookList: React.FC<BookListProps> = ({ books = [], onBookSelected =
 
   return <div>
     {
-      books.map(book => <BookListItem key={book.isbn} book={book} onBookListItemClicked={onBookSelected} />)
+      books.map(book => <div>
+        <BookListItem key={book.isbn} book={book} onBookListItemClicked={onBookSelected} />
+        {/* <Link to={`/books/${book.isbn}`}>Show</Link> */}
+      </div>)
     }
   </div>
 }

@@ -8,13 +8,11 @@ export interface BookDetailProps {
 export const BookDetail: React.FC<BookDetailProps> = ({ book }) => {
 
   return <div>
-    {
-      book ? <div>
+    <div>
         isbn: {book.isbn}<br />
         title: {book.title ?? '-'}<br />
         subtitle: {book.subtitle ?? '-'}<br />
-      </div> : <span>Loading book...</span>
-    }
+      </div>
   </div>
 
 };
