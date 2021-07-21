@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { BookDetail } from './components/BookDetail';
+import { BookList, OnBookSelected } from './components/BookList';
+import { Book, useBooks } from './domain/books';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const books = useBooks();
+  const [book, setBook] = useState<Book | null>(null);
+
+  const onBookSelected: OnBookSelected = (book: Book) => {
+    setBook(book);
+  }
+
+  return <div className="App">
+    {books ? (
+      <>
+        <BookList books={books} onBookSelected={onBookSelected} />
+          {book ? (
+            <>
+              <BookDetail book={book} />
+            </>
+          ) : (
+            <div>No Book selected</div>
+          )}
+      </>
+    ) : <span>Loading books...</span>}
+
+  </div>
 }
+
 
 export default App;
